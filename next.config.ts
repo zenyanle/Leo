@@ -1,7 +1,22 @@
-import type { NextConfig } from "next";
+// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.notion.so',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.us-west-2.amazonaws.com',
+      }
+    ],
+  },
+}
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
+module.exports = nextConfig
