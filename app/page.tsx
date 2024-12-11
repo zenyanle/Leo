@@ -6,11 +6,30 @@ import sharedStyles from "./styles/shared.module.css";
 import Link from "next/link";
 
 // Helper function for string truncation
-function truncateString(input: string, length: number = 20): string {
+function truncateString(input: string, length: number = 40): string {
   if (input.length <= length) {
     return input;
   }
   return input.slice(0, length) + "...";
+}
+
+function htmlToPreviewText(html: string, maxLength = 200): string {
+  // 先移除所有HTML标签
+  const text = html.replace(/<[^>]*>/g, ' ')
+    // 移除多余空格
+    .replace(/\s+/g, ' ')
+    // 解码HTML实体
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .trim();
+  
+  // 截取指定长度
+  return text.length > maxLength 
+    ? text.slice(0, maxLength) + '...'
+    : text;
 }
 
 // 添加 generateStaticParams 实现 SSG
@@ -41,7 +60,7 @@ export default async function BlogPage() {
             </h3>
             <div className="authors">By: Hugo</div>
             <div className="posted">Posted: {page.post.date}</div>
-            <p>{truncateString(page.markdown.parent)}</p>
+            <p>{htmlToPreviewText(page.html, 100)}</p>
           </div>
         ))
       )}

@@ -11,6 +11,7 @@ export interface BlogPost {
 
 export interface PostPage {
     post: BlogPost;
+    html: string;
     markdown: { parent: string }; // 修改这里以匹配 notion-to-md 的返回类型
 }
 
