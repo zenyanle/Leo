@@ -33,8 +33,14 @@ export default async function BlogPost({ params }: { params: any }) {
     }
 
     return (
+      <div style={{ 
+        width: '90%', 
+        maxWidth: '800px', 
+        margin: '0 auto' 
+      }}>
         <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        </div>
         </div>
         )
 
