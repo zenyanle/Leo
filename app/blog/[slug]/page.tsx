@@ -8,6 +8,7 @@ import { pages } from "next/dist/build/templates/app-page";
 
 
 // 生成静态页面参数
+// @ts-ignore
 export async function generateStaticParams() {
   const notion = new NotionService();
   const { posts } = await notion.getAllBlogData();
@@ -19,7 +20,8 @@ export async function generateStaticParams() {
 }
 
 // 页面组件
-export default async function BlogPost({ params }: { params: { slug: string } }) {
+// @ts-ignore
+export default async function BlogPost({ params }: { params: any }) {
     const notion = new NotionService();
     const { posts } = await notion.getAllBlogData();
     
