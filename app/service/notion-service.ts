@@ -61,9 +61,9 @@ export default class NotionService {
         const postsPromises = response.results.map(async (page) => {
             const post = NotionService.pageToPostTransformer(page);
 
-            const slugg = this.convertMixedStringToEnglish(post.slug);
+            // const slugg = this.convertMixedStringToEnglish(post.slug);
 
-            post.slug = slugg;
+            post.slug = this.convertMixedStringToEnglish(post.slug);
             
             // 收集标签
             post.tags.forEach(tag => tagsSet.add(tag.name));
