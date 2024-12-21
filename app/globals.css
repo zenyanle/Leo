@@ -35,8 +35,7 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--fg);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Noto Sans SC', sans-serif;
 
   background-image: radial-gradient(#ddd 1px, transparent 1px),
     radial-gradient(#ddd 1px, transparent 1px);
@@ -55,7 +54,7 @@ pre[class*='language-'] {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  font-size: 0.95em;
+  font-size: 0.70em;
   line-height: 1.4em;
   tab-size: 4;
   hyphens: none;
@@ -285,6 +284,14 @@ h1 {
 }
 
 h2 {
+  display: block;
+  font-weight: 300;
+  font-size: 1.25rem;
+  letter-spacing: -0.02rem;
+  color: var(--accents-3);
+}
+
+h3 {
   font-weight: 300;
   font-size: 1.25rem;
   letter-spacing: -0.02rem;

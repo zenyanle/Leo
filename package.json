@@ -19,11 +19,13 @@
     "marked-highlight": "^2.2.1",
     "next": "15.0.3",
     "notion-to-md": "^3.1.1",
+    "pinyin": "4.0.0-alpha.2",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/pinyin": "^2.10.2",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "typescript": "^5"

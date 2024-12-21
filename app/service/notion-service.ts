@@ -7,6 +7,7 @@ import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from 'highlight.js';
 import 'highlight.js/styles/idea.css'; // 使用 VS 主题
+import pinyin from 'pinyin';
 
 export default class NotionService {
     private client: Client;
@@ -59,6 +60,10 @@ export default class NotionService {
         // 并行处理所有页面
         const postsPromises = response.results.map(async (page) => {
             const post = NotionService.pageToPostTransformer(page);
+
+            const slugg = this.convertMixedStringToEnglish(post.slug);
+
+            post.slug = slugg;
             
             // 收集标签
             post.tags.forEach(tag => tagsSet.add(tag.name));
@@ -66,7 +71,7 @@ export default class NotionService {
             // 获取 Markdown
             const mdBlocks = await this.n2m.pageToMarkdown(page.id);
             const markdown = this.n2m.toMarkdownString(mdBlocks);
-            const html = this.toHtml(markdown.parent)
+            const html = this.toHtml(markdown.parent);
             
             return {
                 post,
@@ -124,4 +129,27 @@ export default class NotionService {
         
         const str = marked.parse(markdown);
         return str;
-    }}
+    }
+
+    convertMixedStringToEnglish = (mixedString: string): string => {
+        // 使用正则表达式将字符串分成中文和非中文部分
+        const segments: string[] = mixedString.match(/[\u4e00-\u9fa5]+|[^\u4e00-\u9fa5]+/g) || [];
+        
+        // 转换每个部分
+        const convertedSegments = segments.map((segment: string) => {
+            // 检查是否包含中文字符
+            if (/[\u4e00-\u9fa5]/.test(segment)) {
+                // 将中文转换为拼音
+                return pinyin(segment, {
+                    style: pinyin.STYLE_NORMAL,
+                    heteronym: false
+                }).map((item: string[]) => item[0]).join('');
+            }
+            // 非中文部分保持不变
+            return segment;
+        });
+
+        return convertedSegments.join('');
+    }
+}
+
