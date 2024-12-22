@@ -1,9 +1,10 @@
 // app/page.tsx
-import { FullBlogData } from "./types/schema";
+import { FullBlogData, BuildData } from "./types/schema";
 import NotionService from "./service/notion-service";
 import blogStyles from "./styles/blog.module.css";
 import sharedStyles from "./styles/shared.module.css";
 import Link from "next/link";
+import { isPageStatic } from "next/dist/build/utils";
 
 // Helper function for string truncation
 function truncateString(input: string, length: number = 40): string {
@@ -32,6 +33,25 @@ function htmlToPreviewText(html: string, maxLength = 200): string {
     : text;
 }
 
+async function getBuildData(): Promise<BuildData> {
+  const currentUTC = new Date().toISOString();
+  let ip: string = "";
+  try {
+    // 获取 IP 地址
+    const ipResponse = await fetch('https://api.ipify.org/')
+    if (!ipResponse.ok) {
+      throw new Error('Failed to fetch IP')
+    }
+    ip = (await ipResponse.text()).trim();
+  } catch {
+    ip = "0.0.0.0"
+  }
+  return {
+    time: currentUTC,
+    ip: ip
+  }
+}
+
 // 添加 generateStaticParams 实现 SSG
 export const dynamic = "force-static"; // 强制静态生成
 export const revalidate = 3600; // 可选:重新验证时间(秒)
@@ -42,10 +62,13 @@ export default async function BlogPage() {
   const notion = new NotionService();
   const globalPostsData: FullBlogData = await notion.getAllBlogData();
   const { posts } = globalPostsData;
+  const buildData: BuildData = await getBuildData();
 
   return (
     <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
       <h1>My Notion Blog</h1>
+      <h2>Built by {buildData.ip}</h2>
+      <h2>UTC {buildData.time}</h2>
       {posts.length === 0 ? (
         <p>No posts available</p>
       ) : (

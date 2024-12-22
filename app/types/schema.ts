@@ -20,3 +20,8 @@ export interface FullBlogData {
     tags: string[];
     totalPosts: number;
 }
+
+export interface BuildData {
+    time: string;
+    ip: string;
+}
