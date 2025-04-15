@@ -131,6 +131,14 @@ export default class NotionService {
         return str;
     }
 
+    /**
+     * 将混合字符串（可能包含中文、英文、数字、特殊字符）转换为 URL 友好的 slug
+     * 1. 中文转为拼音
+     * 2. 保留字母、数字和短横线
+     * 3. 其他特殊字符替换为短横线
+     * 4. 统一小写
+     * 5. 整理多余的短横线
+     */
     convertMixedStringToEnglish = (mixedString: string): string => {
         // 使用正则表达式将字符串分成中文和非中文部分
         const segments: string[] = mixedString.match(/[\u4e00-\u9fa5]+|[^\u4e00-\u9fa5]+/g) || [];
@@ -149,7 +157,23 @@ export default class NotionService {
             return segment;
         });
 
-        return convertedSegments.join('');
+        // 将所有部分连接在一起
+        let slug = convertedSegments.join('');
+        
+        // 处理特殊字符，只保留字母、数字，其他字符转为短横线
+        slug = slug
+            // 将空格、下划线、点和其他分隔符转为短横线
+            .replace(/[\s_\.\/\\\?&=]/g, '-')
+            // 移除所有其他非字母非数字字符
+            .replace(/[^a-zA-Z0-9-]/g, '')
+            // 多个连续短横线转为单个短横线
+            .replace(/-{2,}/g, '-')
+            // 移除首尾的短横线
+            .replace(/^-+|-+$/g, '')
+            // 全部转为小写
+            .toLowerCase();
+            
+        return slug;
     }
 }
 

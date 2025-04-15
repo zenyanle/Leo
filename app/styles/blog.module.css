@@ -60,12 +60,16 @@
 
 .noPosts {
   text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin: 3rem 0;
 }
 
 .postPreview {
   max-width: 600px;
   margin: 10px auto;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 20px;
 }
 
 .postPreview:last-child {
@@ -248,4 +252,621 @@
   border-radius: 1px;
   width: 100%;
   height: 100%;
+}
+
+/* 博客容器 */
+.blogContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 头部导航栏 */
+.header {
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  text-decoration: none;
+  color: #000;
+}
+
+.logo h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navLink {
+  color: #666;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: #000;
+}
+
+/* 主要内容区域 */
+.main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pageTitle h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* 标签容器 */
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.tagLink {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.tagLink:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* 文章网格 */
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+/* 文章卡片 */
+.postCard {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.postCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.postCardImageWrapper {
+  height: 200px;
+  overflow: hidden;
+}
+
+.postCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.postCard:hover .postCardImage {
+  transform: scale(1.05);
+}
+
+.postCardContent {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.postCardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.postCardDate {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.postCardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.postCardTag {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #fff;
+  background-color: #3b82f6;
+}
+
+.postCardTitle {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+.postCardTitle a {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.postCardTitle a:hover {
+  color: #3b82f6;
+}
+
+.postCardExcerpt {
+  color: #444;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.readMoreLink {
+  align-self: flex-start;
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.readMoreLink:hover {
+  transform: translateX(5px);
+}
+
+/* 页脚 */
+.footer {
+  background-color: #f9f9f9;
+  padding: 3rem 0 1.5rem;
+  margin-top: 4rem;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.footerColumn h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.footerColumn p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 0.8rem;
+}
+
+.footerLinks a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerLinks a:hover {
+  color: #3b82f6;
+}
+
+.footerBottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.footerBottom p {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* 文章详情页 */
+.articleMain {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.articleHeader {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.articleCover {
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.articleCover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.articleTitle {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.articleMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.articleDate {
+  color: #666;
+  font-size: 1rem;
+}
+
+.articleTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.articleTag {
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.articleContent {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.articleContent :global(h2) {
+  font-size: 1.8rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.articleContent :global(h3) {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.articleContent :global(p) {
+  margin-bottom: 1.5rem;
+}
+
+.articleContent :global(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 2rem auto;
+  display: block;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.articleContent :global(blockquote) {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #3b82f6;
+  background-color: #f8fafc;
+  color: #4a5568;
+  font-style: italic;
+}
+
+.articleContent :global(pre) {
+  background-color: #f8fafc;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.articleContent :global(code) {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.articleContent :global(ul), 
+.articleContent :global(ol) {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.articleContent :global(li) {
+  margin-bottom: 0.5rem;
+}
+
+.articleContent :global(a) {
+  color: #3b82f6;
+  text-decoration: none;
+  transition: border-bottom 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.articleContent :global(a:hover) {
+  border-bottom: 1px solid #3b82f6;
+}
+
+.articleFooter {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.articleNavigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.backToList {
+  display: inline-flex;
+  align-items: center;
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.backToList:hover {
+  transform: translateX(-5px);
+}
+
+.notFound {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #666;
+  margin: 5rem 0;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+  .headerContent {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .nav {
+    margin-top: 1rem;
+  }
+  
+  .postsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .articleTitle {
+    font-size: 2rem;
+  }
+  
+  .pageTitle h1 {
+    font-size: 2rem;
+  }
+  
+  .main,
+  .articleMain {
+    padding: 1.5rem 1rem;
+  }
+  
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .articleMeta {
+    flex-direction: column;
+  }
+}
+
+/* 添加首页特有样式 */
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  margin-bottom: 3rem;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  border-radius: 10px;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: #495057;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.heroCta {
+  margin-top: 2rem;
+}
+
+.primaryButton {
+  display: inline-block;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 500;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.25);
+}
+
+.primaryButton:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(59, 130, 246, 0.3);
+}
+
+.homeSection {
+  margin-bottom: 5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.sectionHeader h2 {
+  font-size: 1.75rem;
+  margin: 0;
+  color: #333;
+}
+
+.viewAll {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.viewAll:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.tagCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.tagCloudItem {
+  padding: 0.6rem 1.2rem;
+  background-color: #f8f9fa;
+  color: #495057;
+  border-radius: 30px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tagCloudItem:hover {
+  background-color: #3b82f6;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.25);
+}
+
+.aboutSection {
+  background-color: #f8f9fa;
+  padding: 3rem;
+  border-radius: 10px;
+}
+
+.aboutContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.aboutContent p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #495057;
+  margin-bottom: 1.5rem;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1rem;
+  }
+  
+  .heroTitle {
+    font-size: 2.2rem;
+  }
+  
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .aboutSection {
+    padding: 2rem 1rem;
+  }
 }
